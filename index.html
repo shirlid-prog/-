@@ -284,7 +284,7 @@
         <p>כדי לשמור על סביבת עבודה בריאה, עלינו לכבד את הגבולות של כל עובד ועובדת:</p>
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
             <div class="content-card" style="text-align: center;"><i class="fa-solid fa-ear-listen" style="font-size:30px; color:var(--secondary); margin-bottom:15px;"></i><p style="font-size:16px;">הקשבה והבנת שפת הגוף והתגובות של האחר.</p></div>
-            <div class="content-card" style="text-align: center;"><i class="fa-solid fa-user-xmark" style="font-size:30px; color:var(--secondary); margin-bottom:15px;"></i><p style="font-size:16px;">הימנעות מהתייחסות אישית למראה או התנהגות עמיתים.</p></div>
+            <div class="content-card" style="text-align: center;"><i class="fa-solid fa-user-xmark" style="font-size:30px; color:var(--secondary); margin-bottom:15px;"></i><p style="font-size:16px;">הימנעות מהתייחסות אישית למראה או להתנהגות של עמיתים.</p></div>
             <div class="content-card" style="text-align: center;"><i class="fa-solid fa-briefcase" style="font-size:30px; color:var(--secondary); margin-bottom:15px;"></i><p style="font-size:16px;">קיום שיח ענייני ומקצועי בלבד במקום העבודה.</p></div>
         </div>
         <div style="text-align: center; margin-top: 30px;"><p style="font-weight: 800; color: var(--primary); font-size: 24px;">אם יש ספק - אין ספק!</p></div>
@@ -299,7 +299,7 @@
                 <ul class="bullet-premium">
                     <li>לחץ נפשי וחרדה מתמשכת.</li>
                     <li>תחושת חוסר ביטחון במקום העבודה ואף מחוצה לו.</li>
-                    <li>השפעות פסיכולוגיות ארוכות טווח (דיכאון, פוסט-טראומה).</li>
+                    <li>השפעות פסיכולוגיות ארוכות טווח, כולל דיכאון ופוסט-טראומה.</li>
                     <li>ירידה באיכות החיים ובעיות בריאותיות כתוצאה מלחץ.</li>
                 </ul>
             </div>
@@ -318,7 +318,7 @@
                 <ul class="bullet-premium">
                     <li>פגיעה באווירה הארגונית ויצירת סביבה לא בטוחה.</li>
                     <li>ירידה במורל העובדים ובפרודוקטיביות.</li>
-                    <li>תחלופה גבוהה של עובדים בעקבות חוסר אמון.</li>
+                    <li>תחלופה גבוהה של עובדים בעקבות חוסר אמון במקום העבודה.</li>
                     <li>פגיעה במוניטין הארגון ובהזדמנויות העסקיות שלו.</li>
                 </ul>
             </div>
@@ -361,8 +361,8 @@
     <div class="slide" id="slide-14">
         <h2 class="slide-title">השלכות משפטיות</h2>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
-            <div class="content-card" style="background:#FEF2F2; border-color:#FECDD3;"><h3 style="color:var(--error); margin-bottom:10px;"><i class="fa-solid fa-gavel"></i> ערוץ פלילי</h3><p style="font-size:16px;">עבירה פלילית שעונשה קנסות כבדים ואף עונש מאסר בפועל של בין שנתיים לארבע שנים.</p></div>
-            <div class="content-card" style="background:#ECFDF5; border-color:#D1FAE5;"><h3 style="color:var(--success); margin-bottom:10px;"><i class="fa-solid fa-scale-balanced"></i> ערוץ אזרחי</h3><p style="font-size:16px;">תביעה לפיצויים של עד 120,000 ש"ח לנפגע/ת בגין פגיעה בכבוד והסבת נזק נפשי, גם ללא הוכחת נזק.</p></div>
+            <div class="content-card" style="background:#FEF2F2; border-color:#FECDD3;"><h3 style="color:var(--error); margin-bottom:10px;"><i class="fa-solid fa-gavel"></i> הליך פלילי</h3><p style="font-size:16px;">עבירה פלילית שעונשה קנסות כבדים ואף עונש מאסר בפועל של בין שנתיים לארבע שנים.</p></div>
+            <div class="content-card" style="background:#ECFDF5; border-color:#D1FAE5;"><h3 style="color:var(--success); margin-bottom:10px;"><i class="fa-solid fa-scale-balanced"></i> הליך אזרחי</h3><p style="font-size:16px;">תביעה לפיצויים של עד 120,000 ש"ח לנפגע/ת בגין פגיעה בכבוד והסבת נזק נפשי, גם ללא הוכחת נזק.</p></div>
         </div>
     </div>
 
@@ -723,6 +723,7 @@
     window.verifyAdmin = function() { 
         if(document.getElementById('admin-input').value == "omni2026") { 
             window.closeAdminModal(); 
+            // תיקון קריטי: תיקון השגיאהstyle.style שגרמה לקריסת פאנל הניהול בעבר!
             document.getElementById('admin-dashboard').style.display = 'flex'; 
             window.fetchAdmin(); 
         } else { 
@@ -754,45 +755,68 @@
         const tbody = document.getElementById('admin-tbody');
         tbody.innerHTML = "<tr><td colspan='4' style='text-align:center; padding:20px;'>טעינת נתונים מהענן זמינה רק כאשר הלומדה פועלת משרת אינטרנט או ג'ומלה.</td></tr>";
     };
+
+    // אתחול מיידי עם פתיחת המצגת כדי לכוון נכון את שקף 1
+    window.updateView();
 </script>
 
 <!-- סקריפט לניהול ורישום מול ענן Firebase - ייטען רק בשרת/ג'ומלה ולא יתקע את הקובץ המקומי! -->
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
     import { getFirestore, doc, setDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-    import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 
     try {
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : { apiKey: "", authDomain: "", projectId: "", storageBucket: "", messagingSenderId: "", appId: "" };
+        const firebaseConfig = typeof window.__firebase_config !== 'undefined' ? JSON.parse(window.__firebase_config) : (typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : { apiKey: "", authDomain: "", projectId: "", storageBucket: "", messagingSenderId: "", appId: "" });
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
         const auth = getAuth(app);
         
-        // שליפת מזהה האפליקציה הדינמי מהסביבה המריצה של המערכת (קריטי למניעת שגיאת הרשאה)
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'omni-harassment-final';
+        // שליפת מזהה האפליקציה הדינמי מהסביבה המריצה של המערכת (קריטי למניעת שגיאת הרשאה - RULE 1)
+        const appId = typeof window.__app_id !== 'undefined' && window.__app_id ? window.__app_id : (typeof __app_id !== 'undefined' && __app_id ? __app_id : 'omni-harassment-final');
 
-        // יצירת הבטחת אישור (Promise) כדי להבטיח אימות מלא לפני כל בקשת Firestore
+        // מעקב אחר מצב התחברות גלובלי
+        window.currentUser = null;
+
+        // הבטחת אישור חיבור מאובטחת ומניעת שגיאת טוקן ריק
         const initAuth = async () => {
-            if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                return signInWithCustomToken(auth, __initial_auth_token);
+            const token = typeof window.__initial_auth_token !== 'undefined' && window.__initial_auth_token ? window.__initial_auth_token : (typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null);
+            if (token && token !== 'undefined' && token !== '' && token !== 'undefined') {
+                await signInWithCustomToken(auth, token);
             } else {
-                return signInAnonymously(auth);
+                await signInAnonymously(auth);
             }
         };
-        let authPromise = initAuth().catch(e => console.warn("Firebase Auth Error: ", e));
+        
+        // הפעלת אימות יחיד אבטחה בעל סדר עדיפויות מוחלט (RULE 3)
+        const authPromise = initAuth().catch(e => console.warn("Firebase Auth Error: ", e));
 
-        // דריסת פונקציית השמירה לפעילות מול פיירבייס בענן (שימוש בנתיבים תקניים דינמיים)
+        onAuthStateChanged(auth, (user) => {
+            window.currentUser = user;
+            if (user && document.getElementById('admin-dashboard').style.display === 'flex') {
+                window.fetchAdmin();
+            }
+        });
+
+        // דריסת פונקציית השמירה לפעילות מול פיירבייס בענן (שימוש בנתיבים תקניים דינמיים - RULE 1)
         window.saveData = async () => {
             const n = document.getElementById('reg-name').value;
             const e = document.getElementById('reg-email').value;
             const d = document.getElementById('reg-dept').value;
             try {
-                const user = await authPromise; // הבטחת חיבור מאומת מראש
-                if (!user) return;
+                const user = await authPromise ? auth.currentUser : window.currentUser;
+                if (!user) {
+                    console.error("User is not authenticated yet.");
+                    return;
+                }
                 
-                // שימוש ב-appId הדינמי למניעת שגיאות הרשאה (Missing or insufficient permissions)
-                await setDoc(doc(collection(db, 'artifacts', appId, 'public', 'data', 'completions')), {
-                    name: n, email: e, department: d, errors: window.errorCount, timestamp: new Date().toISOString()
+                // שימוש ב-appId הדינמי ובנתיב מדויק למניעת שגיאות הרשאה (RULE 1)
+                await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'completions', user.uid), {
+                    name: n,
+                    email: e,
+                    department: d,
+                    errors: window.errorCount,
+                    timestamp: new Date().toISOString()
                 });
                 document.getElementById('save-msg').innerText = "פרטייך נשמרו בהצלחה במערכת המעקב של אומניטלקום.";
             } catch (err) { 
@@ -801,25 +825,35 @@
             }
         };
 
-        // דריסת פונקציית הטעינה לפעילות מול פיירבייס בענן (שימוש בנתיבים תקניים דינמיים)
+        // דריסת פונקציית הטעינה לפעילות מול פיירבייס בענן (שימוש בנתיבים תקניים דינמיים - RULE 1 + RULE 2)
         window.fetchAdmin = async () => {
             const tbody = document.getElementById('admin-tbody');
             tbody.innerHTML = "<tr><td colspan='5' style='text-align:center; padding:20px;'><i class='fa-solid fa-spinner fa-spin'></i> טוען נתונים מהענן...</td></tr>";
             try {
-                const user = await authPromise; // הבטחת חיבור מאומת מראש
-                if (!user) return;
+                const user = await authPromise ? auth.currentUser : window.currentUser;
+                if (!user) {
+                    tbody.innerHTML = "<tr><td colspan='5' style='text-align:center; padding:20px; color:red;'>שגיאת אימות: משתמש לא מחובר. אנא המתינו שניה ונסו שוב.</td></tr>";
+                    return;
+                }
 
-                // שימוש ב-appId הדינמי לצורך קבלת הרשאות קריאה
+                // שאילתת ענן פשוטה בלבד - ללא orderBy או where (RULE 2)
                 const snap = await getDocs(collection(db, 'artifacts', appId, 'public', 'data', 'completions'));
+                
+                // מיון מקומי בלבד בזיכרון של ה-JS (RULE 2)
+                const dataList = [];
+                snap.forEach(doc => {
+                    dataList.push(doc.data());
+                });
+                dataList.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
                 tbody.innerHTML = "";
                 let count = 0;
-                snap.forEach(doc => {
-                    const d = doc.data();
+                dataList.forEach(d => {
                     tbody.innerHTML += `<tr>
-                        <td>${d.name || '---'}</td>
+                        <td><strong>${d.name || '---'}</strong></td>
                         <td>${d.email || '---'}</td>
                         <td>${d.department || '---'}</td>
-                        <td>${d.timestamp ? new Date(d.timestamp).toLocaleDateString('he-IL') : '---'}</td>
+                        <td>${d.timestamp ? new Date(d.timestamp).toLocaleDateString('he-IL', {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit'}) : '---'}</td>
                         <td style="color:${d.errors > 0 ? 'red' : 'green'}">${d.errors || 0} טעויות</td>
                     </tr>`;
                     count++;
@@ -829,7 +863,7 @@
                 }
             } catch (err) { 
                 console.error("שגיאה בשליפת נתונים:", err);
-                tbody.innerHTML = "<tr><td colspan='5' style='text-align:center; padding:20px; color:red;'>שגיאה בטעינת נתונים מהענן. ודא חיבור אינטרנט והרשאות מתאימות.</td></tr>";
+                tbody.innerHTML = "<tr><td colspan='5' style='text-align:center; padding:20px; color:red;'>שגיאת הרשאה או חיבור לענן. אנא ודאו שהלומדה מופעלת משרת מורשה.</td></tr>";
             }
         };
     } catch (e) {
